@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 import colors from './assets/Colors';
 
@@ -14,20 +14,27 @@ export default function App() {
     setTaskItems([...taskItems, task]);
     setTask(null);
   }
-
+  {/*delete task*/}
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   }
 
+  {/* change color on press */}
+
+
   return (
     <View style={styles.container}>
+      <ScrollView contentContainerStyle={{
+        flexGrow:1
+      }}
+      keyboardShouldPersistTaps='handled'>
       {/* todays tasks */}
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Baby Steps</Text>
         <View style={styles.items}>
-          {/*this is wher ethe items go*/}
+          {/*this is where the items go*/}
           {
             taskItems.map((item, index) => {
               return (
@@ -39,10 +46,10 @@ export default function App() {
           }
           {/* task 1 */}
           <Task text={'task 1'} color={'red'}/>
-          
         </View>
       </View> 
-
+      </ScrollView>
+      
       {/* create a task */}
       <KeyboardAvoidingView
 
@@ -53,8 +60,7 @@ export default function App() {
         <TextInput 
           style={styles.input}
           placeholder={'Add Step'} value={task} onChangeText={text => setTask(text)}
-          placeholderTextColor={colors.item
-          } 
+          placeholderTextColor={'#FAE0BB'} 
           >
         </TextInput>
       
@@ -98,19 +104,22 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 60,
-    backgroundColor: '#BBFACD',
+    backgroundColor: colors.bg,
     width: '80%',
     fontSize: 20,
-    
+    paddingLeft: 40,
+    color: '#FAE0BB'
   },
   addWrapper: {
     width: 60,
     height: 60,
-    backgroundColor: '#FAE0BB',
-    alignItems: 'center',
+    backgroundColor: colors.bg,
+    alignItems: 'center'
+
   },
   addText: {
     fontSize: 47, //wtf?
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    color: '#BBFACD'
   },
 });
