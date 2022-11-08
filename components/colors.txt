@@ -1,0 +1,20 @@
+/* Color Theme Swatches in Hex */
+@My-Color-Blind-Safe-Theme-1-hex: #9582AD;
+@My-Color-Blind-Safe-Theme-2-hex: #F8F2FF;
+@My-Color-Blind-Safe-Theme-3-hex: #E5D4FA;
+@My-Color-Blind-Safe-Theme-4-hex: #ADAC71;
+@My-Color-Blind-Safe-Theme-5-hex: #FAF9D4;
+
+/* Color Theme Swatches in RGBA */
+@My-Color-Blind-Safe-Theme-1-rgba: rgba(149, 130, 173, 1);
+@My-Color-Blind-Safe-Theme-2-rgba: rgba(248, 242, 255, 1);
+@My-Color-Blind-Safe-Theme-3-rgba: rgba(229, 212, 250, 1);
+@My-Color-Blind-Safe-Theme-4-rgba: rgba(173, 172, 113, 1);
+@My-Color-Blind-Safe-Theme-5-rgba: rgba(250, 249, 212, 1);
+
+/* Color Theme Swatches in HSLA */
+@My-Color-Blind-Safe-Theme-1-hsla: hsla(266, 20, 59, 1);
+@My-Color-Blind-Safe-Theme-2-hsla: hsla(267, 100, 97, 1);
+@My-Color-Blind-Safe-Theme-3-hsla: hsla(266, 79, 90, 1);
+@My-Color-Blind-Safe-Theme-4-hsla: hsla(59, 26, 56, 1);
+@My-Color-Blind-Safe-Theme-5-hsla: hsla(58, 79, 90, 1);
