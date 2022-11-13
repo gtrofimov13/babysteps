@@ -59,7 +59,8 @@ export default function App() {
         <TextInput 
           style={styles.input}
           placeholder={'Add Step'} value={task} onChangeText={text => setTask(text)}
-          placeholderTextColor={'#FAE0BB'} 
+          placeholderTextColor={colors.text} 
+          selectionColor={colors.text}
           >
         </TextInput>
       
@@ -88,37 +89,42 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.text
+    color: colors.text,
+
   },
   items: {
-    marginTop: 15
+    marginTop: 15,
   },
   writeTaskWrapper: {
-    position: 'absolute',
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 80,
+    paddingRight:40,
     bottom: 60,
-    width: '100%',
+    alignItems: 'center', 
     flexDirection: 'row',
+    flexWrap:'wrap',
+    justifyContent: 'space-between'
   },
   input: {
     height: 60,
+    width: '70%',
     backgroundColor: colors.bg,
-    width: '80%',
     fontSize: 20,
-    paddingLeft: 40,
-    color: '#FAE0BB'
+    paddingLeft: 20,
+    color: colors.text,
+    borderWidth: 2,
+    borderColor: colors.bg,
+    borderBottomColor: colors.text
+
   },
   addWrapper: {
     width: 60,
     height: 60,
     backgroundColor: colors.bg,
-    alignItems: 'center'
-
+    alignItems: 'center',
   },
   addText: {
     fontSize: 47, //wtf?
     textAlignVertical: 'center',
-    color: '#BBFACD'
+    color: '#BBFACD',
   },
 });
