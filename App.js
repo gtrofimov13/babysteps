@@ -44,7 +44,7 @@ export default function App() {
             })
           }
           {/* task 1 */}
-          <Task text={'task 1'} color={'red'}/>
+          <Task text={'Buy Diapers'} color={'red'}/>
         </View>
       </View> 
       </ScrollView>
