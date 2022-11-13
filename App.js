@@ -13,15 +13,14 @@ export default function App() {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
     setTask(null);
-  }
+  };
+
   {/*delete task*/}
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
-  }
-
-  {/* change color on press */}
+  };
 
 
   return (

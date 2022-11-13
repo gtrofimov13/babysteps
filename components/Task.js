@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Touchable, TouchableOpacity } from "react-native";
 import colors from "../assets/Colors";
 
-const Task = (props) => {
+const Task = (props) => {  
     
+    const [dif,setDif]=useState(null)
+
+    {/*change taskDif */}
+    const handleDif = (dif) => {
+        // if taskDif = 2 => 0
+        // else +1
+        if(dif===null)
+        setDif('low')
+        else if (dif==='low')
+        setDif('mid')
+        else if(dif==='mid')
+        setDif('high')
+        else {
+        setDif(null)
+        }
+    }
+
+    function getDif(dif) {
+        if(dif===null)
+          return {borderColor: colors.circular.gray}
+        else if(dif==='low')
+          return {borderColor: colors.circular.green}
+        else if(dif==='mid')
+          return {borderColor: colors.circular.yellow}
+        else (dif==='high')
+          return {borderColor: colors.circular.red}
+    }
+
     return (
         <View style = {styles.item}>
             <View style={styles.itemLeft}>            
@@ -11,7 +39,9 @@ const Task = (props) => {
                 <Text style = {styles.itemText}>{props.text}</Text>
             </View>
             <View>
-                <TouchableOpacity style={styles.circular}></TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => handleDif(dif)} 
+                style={[styles.circular, getDif(dif)]}></TouchableOpacity>
             </View>
         </View>
     )
@@ -45,12 +75,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     circular: {
-        width: 12,
-        height: 12,
-        borderRadius: 5,
-        borderColor: colors.circular,
-        borderWidth: 3,
-        opacity: 0.5
+        width: 20,
+        height: 20,
+        borderRadius: 9,
+        borderWidth: 5,
+        opacity: 0.8
 
     }
 });
