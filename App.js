@@ -1,21 +1,24 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 import colors from './assets/Colors';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+import { HoldMenuProvider } from 'react-native-hold-menu';
 
 export default function App() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
 
-  {/* Handle state*/}
+  {/* Handle state*/ }
   const handleAddTask = () => {
     Keyboard.dismiss();
+
     setTaskItems([...taskItems, task]);
     setTask(null);
   };
 
-  {/*delete task*/}
+  {/*delete task*/ }
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
@@ -24,56 +27,60 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={{
-        flexGrow:1
-      }}
-      keyboardShouldPersistTaps='handled'>
-      {/* todays tasks */}
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Baby Steps</Text>
-        <View style={styles.items}>
-          {/*this is where the items go*/}
-          {
-            taskItems.map((item, index) => {
-              return (
-                <TouchableOpacity key={index} onPress={()=> completeTask(index)}>
-                  <Task text ={item}/>
-                </TouchableOpacity>
-              )
-            })
-          }
-          {/* task 1 */}
-          <Task text={'Buy Diapers'} color={'red'}/>
-        </View>
-      </View> 
-      </ScrollView>
-      
-      {/* create a task */}
-      <KeyboardAvoidingView
+    <HoldMenuProvider>
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={{
+          flexGrow: 1
+        }}
+          keyboardShouldPersistTaps='handled'>
+          {/* todays tasks */}
+          <View style={styles.tasksWrapper}>
+            <Text style={styles.sectionTitle}>Baby Steps</Text>
+            <View style={styles.items}>
+              {/*this is where the items go*/}
+              {
+                taskItems.map((item, index) => {
+                  return (
 
-        behavior={Platform.OS === "ios"  ? "padding" : "height"}
-        style={styles.writeTaskWrapper}
-        >
-      
-        <TextInput 
-          style={styles.input}
-          placeholder={'Add Step'} value={task} onChangeText={text => setTask(text)}
-          placeholderTextColor={colors.text} 
-          selectionColor={colors.text}
-          >
-        </TextInput>
-      
-      
-        <TouchableOpacity onPress={()=> handleAddTask()}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
+                    <TouchableOpacity key={index} onLongPress={() => completeTask(index)}>
+                      <Task text={[item]} />
+                    </TouchableOpacity>
+                  )
+                })
+              }
+              {/* task 1 */}
+              <Task text={'Buy Diapers'} color={'red'} />
+            </View>
           </View>
-        </TouchableOpacity>
-        
-      
-      </KeyboardAvoidingView> 
-    </View>
+        </ScrollView>
+
+
+        {/* create a task */}
+        <KeyboardAvoidingView
+
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.writeTaskWrapper}
+        >
+
+          <TextInput
+            style={styles.input}
+            placeholder={'Add Step'} value={task} onChangeText={text => setTask(text)}
+            placeholderTextColor={colors.text}
+            selectionColor={colors.text}
+          >
+          </TextInput>
+
+
+          <TouchableOpacity onPress={() => handleAddTask()}>
+            <View style={styles.addWrapper}>
+              <Text style={styles.addText}>+</Text>
+            </View>
+          </TouchableOpacity>
+
+
+        </KeyboardAvoidingView>
+      </View>
+      </HoldMenuProvider>
   );
 }
 
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
   tasksWrapper: {
     paddingHorizontal: 40,
     paddingTop: 120,
-    },
+  },
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -97,11 +104,11 @@ const styles = StyleSheet.create({
   },
   writeTaskWrapper: {
     paddingLeft: 80,
-    paddingRight:40,
+    paddingRight: 40,
     bottom: 60,
-    alignItems: 'center', 
+    alignItems: 'center',
     flexDirection: 'row',
-    flexWrap:'wrap',
+    flexWrap: 'wrap',
     justifyContent: 'space-between'
   },
   input: {

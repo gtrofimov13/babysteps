@@ -14,3 +14,12 @@ Click the circle on the task
 
 ## To delete task
 Click anywhere on the task elemnt.
+
+## Setup
+
+Hold menu - hella work read the docs
+expo-modules-core
+
+//TODO
+fix date
+
