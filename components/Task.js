@@ -17,7 +17,7 @@ const Task = (props) => {
     const [dif, setDif] = useState(null)
 
     // set the due date for each item
-    var date = format(new Date(),'mm/dd')
+    var date = format(new Date(),'MM/dd')
     const [dueDate, setDueDate] = useState(date)
 
     // set the dueDate  
@@ -45,30 +45,34 @@ const Task = (props) => {
 
     function getDif(dif) {
         if (dif === null)
-            return { borderColor: colors.circular.gray }
+            return { backgroundColor: colors.circular.gray }
         else if (dif === 'low')
-            return { borderColor: colors.circular.green }
+            return { backgroundColor: colors.circular.green }
         else if (dif === 'mid')
-            return { borderColor: colors.circular.yellow }
+            return { backgroundColor: colors.circular.yellow }
         else (dif === 'high')
-        return { borderColor: colors.circular.red }
+        return { backgroundColor: colors.circular.red }
     }
 
     return (
 
         <View style={styles.item}>
             <View style={styles.itemLeft}>
-                <HoldItem items={MenuItems} menuAnchorPosition="top-left">
-                    <TouchableOpacity style={styles.sqaure}></TouchableOpacity>
-                </HoldItem>
+                
+                    <TouchableOpacity 
+                        onPress={() => handleDif(dif)}
+                        style={[styles.sqaure, getDif(dif)]}></TouchableOpacity>
+    
                 <Text style={styles.itemText}>{[props.text, '\n', dueDate, '\n', dif,]}</Text>
             </View>
 
             <View>
+            <HoldItem items={MenuItems} menuAnchorPosition="top-right">
                 <TouchableOpacity
-                    onPress={() => handleDif(dif)}
-                    style={[styles.circular, getDif(dif)]}></TouchableOpacity>
+                    style={styles.circular}></TouchableOpacity>
+            </HoldItem>
             </View>
+            
         </View>
     )
 }
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
     sqaure: {
         width: 10,
         height: 50,
-        backgroundColor: colors.square,
+        backgroundColor: colors.circular.gray,
         opacity: 0.7,
         marginRight: 15
     },
@@ -105,7 +109,8 @@ const styles = StyleSheet.create({
         height: 20,
         borderRadius: 9,
         borderWidth: 5,
-        opacity: 0.8
+        opacity: 0.8,
+        borderColor: colors.square
 
     }
 });
