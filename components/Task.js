@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Touchable, TouchableOpacity } from "react-native";
 import { HoldItem } from "react-native-hold-menu";
 import colors from "../assets/Colors";
+import {format} from 'date-fns'
 
 // Hold Menu Items
 const MenuItems = [
@@ -15,8 +16,9 @@ const Task = (props) => {
     // set the difficulty of the items
     const [dif, setDif] = useState(null)
 
-    // set the due date fo reach item
-    const [dueDate, setDueDate] = useState(new Date().getDate())
+    // set the due date for each item
+    var date = format(new Date(),'mm/dd')
+    const [dueDate, setDueDate] = useState(date)
 
     // set the dueDate  
     const handleDueDate = (date) => {
