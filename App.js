@@ -29,10 +29,9 @@ export default function App() {
   return (
     <HoldMenuProvider>
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={{
-          flexGrow: 1
-        }}
-          keyboardShouldPersistTaps='handled'>
+        <ScrollView contentContainerStyle={{flexGrow: 1}}
+                    keyboardShouldPersistTaps='handled'
+                    style={styles.scrollView}>
           {/* todays tasks */}
           <View style={styles.tasksWrapper}>
             <Text style={styles.sectionTitle}>Baby Steps</Text>
@@ -88,6 +87,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.bg,
+  },
+  scrollView:{
+    backgroundColor: colors.bg,
+    marginBottom: 80
   },
   tasksWrapper: {
     paddingHorizontal: 40,
