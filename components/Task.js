@@ -2,10 +2,25 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Touchable, TouchableOpacity } from "react-native";
 import colors from "../assets/Colors";
 
-const Task = (props) => {  
-    
-    const [dif,setDif]=useState(null)
+// Hold Menu Items
+const MenuItems = [
+    { text: 'Actions'},
+    ]
 
+const Task = (props) => {  
+    // set the difficulty of the items
+    const [dif,setDif]=useState(null)
+    
+    // set the due date fo reach item
+    const [dueDate,setDueDate]=useState(new Date().getDate())
+
+    // set the dueDate  
+    const handleDueDate = (date) => {
+        setDueDate(date)
+    }
+
+    
+    
     {/*change taskDif */}
     const handleDif = (dif) => {
         // if taskDif = 2 => 0
@@ -21,6 +36,7 @@ const Task = (props) => {
         }
     }
 
+
     function getDif(dif) {
         if(dif===null)
           return {borderColor: colors.circular.gray}
@@ -33,11 +49,13 @@ const Task = (props) => {
     }
 
     return (
+
         <View style = {styles.item}>
             <View style={styles.itemLeft}>            
                 <TouchableOpacity style={styles.sqaure}></TouchableOpacity>
-                <Text style = {styles.itemText}>{props.text}</Text>
+                <Text style = {styles.itemText}>{[props.text,'\n',dueDate,'\n',dif,]}</Text>
             </View>
+          
             <View>
                 <TouchableOpacity
                 onPress={() => handleDif(dif)} 
