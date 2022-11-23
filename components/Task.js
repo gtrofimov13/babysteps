@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Touchable, TouchableOpacity } from "react-nativ
 import { HoldItem } from "react-native-hold-menu";
 import colors from "../assets/Colors";
 import {format} from 'date-fns'
+import { Swipeable } from "react-native-gesture-handler";
 
 // Hold Menu Items
 const MenuItems = [
@@ -55,7 +56,6 @@ const Task = (props) => {
     }
 
     return (
-
         <View style={styles.item}>
             <View style={styles.itemLeft}>
                 
