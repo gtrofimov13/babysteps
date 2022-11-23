@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import Task from './components/Task';
-import colors from './assets/Colors';
 import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import { HoldMenuProvider } from 'react-native-hold-menu';
+import { Swipeable } from 'react-native-gesture-handler';
+import Task from './components/Task';
+import colors from './assets/Colors';
+
 
 export default function App() {
   const [task, setTask] = useState();
@@ -25,6 +27,12 @@ export default function App() {
     setTaskItems(itemsCopy);
   };
 
+  const Pop = (index) =>{
+    return (
+      <Text>BAR</Text>
+      )
+  }
+
 
   return (
     <HoldMenuProvider>
@@ -35,21 +43,33 @@ export default function App() {
           {/* todays tasks */}
           <View style={styles.tasksWrapper}>
             <Text style={styles.sectionTitle}>Baby Steps</Text>
+            
+            {/*
+            <Swipeable renderLeftActions={Pop}>
+
+            <View>
+              <Text>FOO</Text>
+            </View>
+            </Swipeable>
+            */}
+
             <View style={styles.items}>
               {/*this is where the items go*/}
               {
                 taskItems.map((item, index) => {
                   return (
-
+                    
                     <TouchableOpacity key={index} onLongPress={() => completeTask(index)}>
                       <Task text={[item]} />
                     </TouchableOpacity>
+
                   )
                 })
               }
               {/* task 1 */}
               <Task text={'Buy Diapers'} color={'red'} />
             </View>
+ 
           </View>
         </ScrollView>
 
@@ -95,6 +115,8 @@ const styles = StyleSheet.create({
   tasksWrapper: {
     paddingHorizontal: 40,
     paddingTop: 120,
+    //borderWidth: 10,
+    //borderColor: 'pink'
   },
   sectionTitle: {
     fontSize: 24,
@@ -104,6 +126,9 @@ const styles = StyleSheet.create({
   },
   items: {
     marginTop: 15,
+
+    //borderWidth: 2,
+    //orderColor: 'pink'
   },
   writeTaskWrapper: {
     paddingLeft: 80,
